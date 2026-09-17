@@ -263,3 +263,51 @@ public class Object {
 }
 
 // HUH?
+
+default isEqual method logic
+
+Stuff s1 = new Stuff("lmao");
+Stuff s2 = new Stuff("lmao");
+Stuff s3 = s1;
+
+s1.equals(s2); // false - different objects in memory
+s1.equals(s3); // true - same object in memory
+
+// the isEqual implementation is a character by character comparison basically
+// technically is a .hashCode() comparison
+
+String str1 = "Hello"; // it is stored in the String pool
+String str2 = "Hello"; // same thing
+str1.isEqual(str2); // true
+
+
+unintialized primitives default to 0
+uninitialized objects default to "null"
+
+
+
+Initialize Supertype and Subtype objects
+
+public class Object {
+    public Object() {
+    }
+
+}
+
+public class Person extends Object {
+    private String name;
+
+    public Person(String name) {
+        super(); // implicit call to Object() constructor
+        this.name = name;
+    }
+}
+
+public class Artist extends Person {
+    private boolean isPainter;
+
+    public Artist(String name, boolean isPainter) {
+        super(name); // must be invoked explicitly, otherwise compiler will complain
+        this.isPainter = isPainter;
+    }
+}
